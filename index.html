@@ -4,68 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sophia Lander - Academic Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --navy: #16263f;
+            --navy-2: #1e3a5f;
+            --accent: #b08d57;      /* warm gold accent */
+            --accent-dark: #8a6d3f;
+            --ink: #2b3440;
+            --muted: #5e6b7a;
+            --line: #e6e9ee;
+            --bg: #f4f6f9;
+            --card: #ffffff;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--ink);
+            background-color: var(--bg);
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* ---------- Header ---------- */
         header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background:
+                radial-gradient(1200px 400px at 80% -20%, rgba(176,141,87,0.18), transparent 60%),
+                linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
             color: white;
-            padding: 2rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 4rem 0 3.5rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        nav {
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        nav li {
-            flex: 1;
-        }
-
-        nav a {
-            display: block;
-            padding: 1rem;
-            text-decoration: none;
-            color: #333;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        nav a:hover,
-        nav a.active {
-            border-bottom-color: #2a5298;
-            color: #2a5298;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        header::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), transparent);
         }
 
         .header-content {
@@ -74,173 +64,280 @@
             gap: 3rem;
         }
 
-        .header-text h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .header-text p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-        }
-
         .profile-img {
-            width: 200px;
-            height: 200px;
+            width: 190px;
+            height: 190px;
             border-radius: 50%;
-            border: 4px solid white;
+            border: 5px solid rgba(255,255,255,0.9);
             object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+            flex-shrink: 0;
         }
 
-        main {
-            margin: 3rem 0;
+        .header-text h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.6rem;
+            line-height: 1.15;
         }
+
+        .header-text .subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .header-text .eyebrow {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        /* ---------- Nav ---------- */
+        nav {
+            background-color: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(12px);
+            -webkit-backdrop-filter: saturate(180%) blur(12px);
+            box-shadow: 0 1px 0 var(--line);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        nav li { flex: 1; }
+
+        nav a {
+            display: block;
+            padding: 1.1rem 1rem;
+            text-decoration: none;
+            color: var(--muted);
+            border-bottom: 3px solid transparent;
+            transition: color 0.25s ease, border-color 0.25s ease;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            border-bottom-color: var(--accent);
+            color: var(--navy);
+        }
+
+        /* ---------- Layout ---------- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        main { margin: 3.5rem 0; }
 
         section {
-            background: white;
-            padding: 2.5rem;
+            background: var(--card);
+            padding: 3rem;
             margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            box-shadow: 0 4px 20px rgba(22,38,63,0.05);
+            scroll-margin-top: 80px;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: none;
         }
 
         h2 {
-            color: #1e3c72;
+            font-family: 'Source Serif 4', Georgia, serif;
+            color: var(--navy);
             font-size: 2rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 3px solid #2a5298;
-            padding-bottom: 0.5rem;
+            font-weight: 700;
+            margin-bottom: 1.75rem;
+            padding-bottom: 0.75rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 56px; height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
         }
 
         h3 {
-            color: #2a5298;
+            font-family: 'Source Serif 4', Georgia, serif;
+            color: var(--navy-2);
             font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
         }
 
-        h3:first-child {
-            margin-top: 0;
-        }
+        h3:first-child { margin-top: 0; }
+
+        p { color: var(--ink); }
 
         .date {
-            color: #666;
+            color: var(--muted);
             font-style: italic;
             font-size: 0.95rem;
+            margin-bottom: 0.4rem;
         }
 
+        ul.styled {
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+            line-height: 2;
+        }
+        ul.styled li::marker { color: var(--accent); }
+
+        /* ---------- Entries / Projects ---------- */
         .entry {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.75rem;
+            border-bottom: 1px solid var(--line);
         }
-
         .entry:last-child {
             border-bottom: none;
             padding-bottom: 0;
             margin-bottom: 0;
         }
-
-        .publication {
-            background-color: #f8f9fa;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid #2a5298;
-            border-radius: 4px;
+        .entry-title {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 1.08rem;
+            margin-bottom: 0.2rem;
         }
 
-        .publication:last-child {
-            margin-bottom: 0;
-        }
-
+        /* ---------- Education ---------- */
         .education-item {
             margin-bottom: 1.5rem;
+            padding-left: 1.25rem;
+            border-left: 3px solid var(--line);
         }
+        .education-item:last-child { margin-bottom: 0; }
+        .institution { font-weight: 700; color: var(--navy); font-size: 1.1rem; }
+        .degree { color: var(--accent-dark); font-weight: 600; }
 
-        .institution {
+        /* ---------- Publications ---------- */
+        .publication {
+            background-color: #fafbfc;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            border-radius: 6px;
+        }
+        .publication:last-child { margin-bottom: 0; }
+
+        .award-tag {
+            display: inline-block;
+            background: rgba(176,141,87,0.14);
+            color: var(--accent-dark);
+            font-size: 0.82rem;
             font-weight: 600;
-            color: #1e3c72;
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            margin-top: 0.35rem;
         }
 
-        .degree {
-            color: #2a5298;
-        }
-
+        /* ---------- Contact ---------- */
         .contact-info {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
-
         .contact-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 1rem;
+            padding: 1.25rem;
+            background: #fafbfc;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(22,38,63,0.08);
+        }
         .contact-item a {
-            color: #2a5298;
+            color: var(--navy-2);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 500;
         }
+        .contact-item a:hover { color: var(--accent-dark); text-decoration: underline; }
+        .contact-label { font-weight: 700; color: var(--navy); margin-bottom: 0.15rem; }
+        .icon { font-size: 1.5rem; line-height: 1; }
 
-        .contact-item a:hover {
-            color: #1e3c72;
-            text-decoration: underline;
-        }
-
-        .icon {
-            font-size: 1.5rem;
-            color: #2a5298;
-        }
-
-        footer {
-            background-color: #1e3c72;
+        .cv-button {
+            display: inline-block;
+            margin-top: 0.5rem;
+            background: var(--navy);
             color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.25s ease, transform 0.2s ease;
+        }
+        .cv-button:hover { background: var(--accent-dark); transform: translateY(-2px); }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background-color: var(--navy);
+            color: rgba(255,255,255,0.85);
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem;
             margin-top: 3rem;
         }
+        footer p { color: rgba(255,255,255,0.8); margin: 0.2rem 0; font-size: 0.95rem; }
 
-        .hidden {
-            display: none;
-        }
-
+        /* ---------- Responsive ---------- */
         @media (max-width: 768px) {
+            header { padding: 3rem 0 2.5rem; }
             .header-content {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+                gap: 1.75rem;
             }
+            .header-text h1 { font-size: 2rem; }
+            .profile-img { width: 150px; height: 150px; }
 
-            .header-text h1 {
-                font-size: 1.8rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-            }
-
+            nav ul { flex-direction: column; }
             nav a {
                 border-bottom: none;
                 border-left: 4px solid transparent;
                 text-align: left;
             }
-
-            nav a:hover,
-            nav a.active {
-                border-left-color: #2a5298;
+            nav a:hover, nav a.active {
+                border-left-color: var(--accent);
+                background: #fafbfc;
             }
-
-            section {
-                padding: 1.5rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
+            section { padding: 1.75rem; }
+            h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -248,10 +345,11 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <img src="headshot.jpg" alt="Profile picture" class="profile-img" id="profileImg">
+                <img src="headshot.jpg" alt="Sophia Lander" class="profile-img" id="profileImg">
                 <div class="header-text">
+                    <span class="eyebrow">PhD Student · Government</span>
                     <h1 id="fullName">Sophia R.C. Lander</h1>
-                    <p id="title">Government PhD Student / University of Texas at Austin</p>
+                    <p class="subtitle" id="title">University of Texas at Austin</p>
                 </div>
             </div>
         </div>
@@ -273,32 +371,31 @@
         <section id="about">
             <h2>About</h2>
             <p id="bioText">
-                Welcome! I am a PhD student at the University of Texas at Austin's Department of Government. My research sits at the intersection betweeen international political economy and comparative industrial policy. After completing my Bachelor of Arts in Political Science from Columbia University in 2025, I started my PhD at UT under the academic advisement of Nate Jensen and Rachel Wellhausen. 
+                Welcome! I am a PhD student at the University of Texas at Austin's Department of Government. My research sits at the intersection between international political economy and comparative industrial policy. After completing my Bachelor of Arts in Political Science from Columbia University in 2025, I started my PhD at UT under the academic advisement of Nate Jensen and Rachel Wellhausen.
             </p>
 
             <h3>Research Interests</h3>
             <p id="researchInterests">
-    I'm interested in studying how governments and firms work together to provide public goods. Specifically, I seek to understand government risk management when engaging with private partners in public-private partnerships, and government incentives to encourage technological innovation.
-</p>
-
-<h3>Substantive Interests</h3>
-<ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 2;">
-    <li>Data center politics</li>
-    <li>Policy determinants of technological innovation</li>
-    <li>International collaboration on public-private partnerships</li>
-    <li>Risk management in public-private partnerships</li>
-    <li>Defense spending and innovation</li>
-</ul>
-
-<h3>Methods</h3>
-<ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 2;">
-    <li>Formal analysis (game theory, social choice theory)</li>
-    <li>Bayesian statistical methods (MCMC, etc.)</li>
-    <li>Maximum likelihood estimation and OLS</li>
-    <li>Agent-based modeling</li>
-    <li>Fieldwork and interviews</li>
-</ul>
+                I'm interested in studying how governments and firms work together to provide public goods. Specifically, I seek to understand government risk management when engaging with private partners in public-private partnerships, and government incentives to encourage technological innovation.
             </p>
+
+            <h3>Substantive Interests</h3>
+            <ul class="styled">
+                <li>Data center politics</li>
+                <li>Policy determinants of technological innovation</li>
+                <li>International collaboration on public-private partnerships</li>
+                <li>Risk management in public-private partnerships</li>
+                <li>Defense spending and innovation</li>
+            </ul>
+
+            <h3>Methods</h3>
+            <ul class="styled">
+                <li>Formal analysis (game theory, social choice theory)</li>
+                <li>Bayesian statistical methods (MCMC, etc.)</li>
+                <li>Maximum likelihood estimation and OLS</li>
+                <li>Agent-based modeling</li>
+                <li>Fieldwork and interviews</li>
+            </ul>
         </section>
 
         <!-- Education Section -->
@@ -314,34 +411,27 @@
                     <div class="institution">Columbia University</div>
                     <div class="degree">B.A. in Political Science, 2025</div>
                 </div>
-            
+            </div>
         </section>
 
         <!-- Research Section -->
         <section id="research">
             <h2>Research</h2>
             <p id="researchText">
-                Below you can find a list of my ongoing research projects. 
+                Below you can find a list of my ongoing research projects.
             </p>
 
             <h3>Current Projects</h3>
             <div id="projectsList">
                 <div class="entry">
-                    <div style="font-weight: 600;">Political Determinants of Risk Sharing in Public-Private Partnerships</div>
+                    <div class="entry-title">Political Determinants of Risk Sharing in Public-Private Partnerships</div>
                     <div class="date">2026 - Present</div>
-                    <p>What explains the variation in risk sharing mechanisms in public-private partnerships (PPPs)? PPPs are structured contractual agreements between a government and a private partner to produce a public good. A defining feature of PPPs is the transfer of risk from the government to the private partner, which implies that governments seek to minize potential failures of public investment projects, assumingly to secure reelection. Yet, different contract designs yield different risk allocations. This paper posits that electoral accountability plays a role in the risk-sharing contract design, but also theorizes that the private partner anticipating electoral suspectibility may shift risk in their favor. </p>
+                    <p>What explains the variation in risk sharing mechanisms in public-private partnerships (PPPs)? PPPs are structured contractual agreements between a government and a private partner to produce a public good. A defining feature of PPPs is the transfer of risk from the government to the private partner, which implies that governments seek to minimize potential failures of public investment projects, assumingly to secure reelection. Yet, different contract designs yield different risk allocations. This paper posits that electoral accountability plays a role in the risk-sharing contract design, but also theorizes that the private partner anticipating electoral susceptibility may shift risk in their favor.</p>
                 </div>
                 <div class="entry">
-                    <div style="font-weight: 600;">Innovative Winners: Variation of Technological
-Innovation & Fitness in Industrial Policy</div>
+                    <div class="entry-title">Innovative Winners: Variation of Technological Innovation &amp; Fitness in Industrial Policy</div>
                     <div class="date">2025 - Present</div>
-                    <p>What explains the variation in technological innovation in public-private partnerships? This paper investigates the role that governments may play as strategic signalers
-altering the variation of products in the marketplace. More specifically, I argue that
-markets can be persuaded by signals from the government. I propose that market dom-
-inance may not be solely determined by intrinsic product qualities, like innovative-ness,
-but that governments can strategically signal to markets about product fitness, favor-
-ing goods that meet operational requirements independently of their inherent technical
-merit. To flesh out these mechanisms, I develop a multi-stage signaling model in which governments signal to markets on two dimensions: product fitness and innovative-ness. Equilibrium analysis reveals that firm research and development allocation is not only responsive to government signaling but is adaptive to future anticipated government needs. The model is complemented by field work interviews conducted in Taiwan, which illustrate the differences in innovative outcomes between Taiwan's semicondcutor and biotechnology industries.</p>
+                    <p>What explains the variation in technological innovation in public-private partnerships? This paper investigates the role that governments may play as strategic signalers altering the variation of products in the marketplace. More specifically, I argue that markets can be persuaded by signals from the government. I propose that market dominance may not be solely determined by intrinsic product qualities, like innovativeness, but that governments can strategically signal to markets about product fitness, favoring goods that meet operational requirements independently of their inherent technical merit. To flesh out these mechanisms, I develop a multi-stage signaling model in which governments signal to markets on two dimensions: product fitness and innovativeness. Equilibrium analysis reveals that firm research and development allocation is not only responsive to government signaling but is adaptive to future anticipated government needs. The model is complemented by field work interviews conducted in Taiwan, which illustrate the differences in innovative outcomes between Taiwan's semiconductor and biotechnology industries.</p>
                 </div>
             </div>
         </section>
@@ -350,81 +440,70 @@ merit. To flesh out these mechanisms, I develop a multi-stage signaling model in
         <section id="publications">
             <h2>Publications</h2>
             <p style="margin-bottom: 1.5rem;">Publications forthcoming.</p>
-           
 
-            <h3 style="margin-top: 2rem;">Conference Presentations</h3>
+            <h3>Conference Presentations</h3>
             <div id="conferencesList">
                 <div class="entry">
-                    <strong>Innovative Winners: Variation of Technological
-Innovation & Fitness in Industrial Policy</strong>
+                    <div class="entry-title">Innovative Winners: Variation of Technological Innovation &amp; Fitness in Industrial Policy</div>
                     <div class="date">INFORMS Analytics+, Washington, D.C., 2026</div>
                 </div>
-            </div>
-            <div id="conferencesList">
                 <div class="entry">
-                    <strong>Deception as a Successful Deterrent of Aggression: A Game Theoretical Approach to Wargaming</strong>
+                    <div class="entry-title">Deception as a Successful Deterrent of Aggression: A Game Theoretical Approach to Wargaming</div>
                     <div class="date">Military Operations Research Society Emerging Techniques Forum, Washington, D.C., 2024</div>
-                    <div class="date">Winner of the 2024 Eugune Visco Prize</div>
+                    <span class="award-tag">🏆 Winner of the 2024 Eugene Visco Prize</span>
                 </div>
             </div>
         </section>
 
         <!-- Teaching Section -->
         <section id="teaching">
-            <h2>Teaching and Research</h2>
+            <h2>Teaching &amp; Research</h2>
 
-            <h3>Current Courses</h3>
-            <div id="currentCourses">
-                
-            </div>
-
-            <h3>Research</h3>
-            <p id="teachingExperience">
-                Research Assistant to Professor Mike Findley: External Validity Inference App Design
+            <h3>Research Experience</h3>
+            <div class="entry">
+                <div class="entry-title">Research Assistant to Professor Mike Findley — External Validity Inference App Design</div>
                 <div class="date">2025 - Present</div>
-                    <p>Designed and created a website/application to complement Professor Findley's external validity book. Goal was to give social science researchers a tool to improve their ability to extend their study's findings beyond the initial sample population. </p>
-                </div>
-            </p>
+                <p>Designed and created a website/application to complement Professor Findley's external validity book. Goal was to give social science researchers a tool to improve their ability to extend their study's findings beyond the initial sample population.</p>
+            </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-info">
-        <div class="contact-item">
-            <span class="icon">📧</span>
-            <div>
-                <div style="font-weight: 600;">Email</div>
-                <a href="mailto:your.email@university.edu">srl3225@my.utexas.edu</a>
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="icon">📧</span>
+                    <div>
+                        <div class="contact-label">Email</div>
+                        <a href="mailto:srl3225@my.utexas.edu">srl3225@my.utexas.edu</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📍</span>
+                    <div>
+                        <div class="contact-label">Office</div>
+                        <p style="font-size:0.95rem;">Batts Hall, Department of Government<br>University of Texas at Austin</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">☎️</span>
+                    <div>
+                        <div class="contact-label">Phone</div>
+                        <p style="font-size:0.95rem;">+1 (949) 280-6299</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">🔗</span>
+                    <div>
+                        <div class="contact-label">Online</div>
+                        <a href="https://www.linkedin.com/in/sophia-lander-61046b155/" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="contact-item">
-            <span class="icon">📍</span>
-            <div>
-                <div style="font-weight: 600;">Office</div>
-                <p>Batts Hall, Department of Government<br>University of Texas at Austin</p>
-            </div>
-        </div>
-        <div class="contact-item">
-            <span class="icon">☎️</span>
-            <div>
-                <div style="font-weight: 600;">Phone</div>
-                <p>+1 (949) 280-6299</p>
-            </div>
-        </div>
-        <div class="contact-item">
-            <span class="icon">🔗</span>
-            <div>
-                <div style="font-weight: 600;">Online</div>
-                <a href="https://www.linkedin.com/in/sophia-lander-61046b155/" target="_blank">LinkedIn</a>
-            </div>
-        </div>
-    </div>
-    <h3 style="margin-top: 2rem;">CV</h3>
-    <p>
-        <a href="Sophia_Lander_CV.pdf" style="color: #2a5298; font-weight: 600;">Download CV (PDF)</a>
-    </p>
-</section>
+
+            <h3>Curriculum Vitae</h3>
+            <a href="Sophia_Lander_CV.pdf" class="cv-button">Download CV (PDF)</a>
+        </section>
     </main>
 
     <footer>
@@ -433,33 +512,18 @@ Innovation & Fitness in Industrial Policy</strong>
     </footer>
 
     <script>
-        // Navigation highlighting
+        // Navigation highlighting on scroll
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section');
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // Update active nav link on scroll
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
                 if (pageYOffset >= sectionTop - 200) {
                     current = section.getAttribute('id');
                 }
             });
-
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === '#' + current) {
@@ -468,11 +532,20 @@ Innovation & Fitness in Industrial Policy</strong>
             });
         });
 
-        // Set current year
+        // Reveal sections as they scroll into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        sections.forEach(s => observer.observe(s));
+
+        // Last updated date
         document.getElementById('lastUpdated').textContent = new Date().toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+            year: 'numeric', month: 'long', day: 'numeric'
         });
     </script>
 </body>
